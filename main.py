@@ -218,7 +218,7 @@ def video(v:str,response: Response,request: Request,yuki: Union[str] = Cookie(No
 def search(q:str,response: Response,request: Request,page:Union[int,None]=1,iPad4610: Union[str] = Cookie(None),proxy: Union[str] = Cookie(None)):
     if not(check_cokie(iPad4610)):
         return redirect("/")
-    response.set_cookie("yuki","True",max_age=60 * 60 * 24 * 7)
+    response.set_cookie("iPad4610","True",max_age=60 * 60 * 24 * 7)
     return template("search.html", {"request": request,"results":get_search(q,page),"word":q,"next":f"/search?q={q}&page={page + 1}","proxy":proxy})
 
 @app.get("/hashtag/{tag}")
@@ -346,17 +346,17 @@ def home(response: Response,request: Request,yuki: Union[str] = Cookie(None)):
 
 
 @app.get("/hcaptcha", response_class=HTMLResponse)
-def home(response: Response,request: Request,yuki: Union[str] = Cookie(None)):
-    if (check_cokie(yuki)):
+def home(response: Response,request: Request,iPad4610: Union[str] = Cookie(None)):
+    if (check_cokie(iPad4610)):
      return redirect("/")
     return template("hcaptcha.html",{"request": request,"token": token})
 @app.get("/word", response_class=HTMLResponse)
-def home(response: Response,request: Request,yuki: Union[str] = Cookie(None)):
-    if (check_cokie(yuki)):
+def home(response: Response,request: Request,iPad4610: Union[str] = Cookie(None)):
+    if (check_cokie(iPad4610)):
      return redirect("/")
     return template("word2.html",{"request": request})
 @app.get("/like", response_class=HTMLResponse)
-def home(response: Response,request: Request,yuki: Union[str] = Cookie(None)):
-    if not(check_cokie(yuki)):
+def home(response: Response,request: Request,iPad4610: Union[str] = Cookie(None)):
+    if not(check_cokie(iPad4610)):
      return redirect("/")
     return template("okini.html",{"request": request})
